@@ -1,29 +1,6 @@
-define(['knockout', 'jquery', 'ais'], function (ko, $, ais) {
+define(['knockout', 'jquery'], function (ko, $, ais) {
 
-  // implement required data fetches
-  function sync() {
-    // a global sync method to wrap inital data fetching into one call
-  }
 
-  function init() {
-    // return an init message for debugging
-    const df = $.Deferred();
-    const aisClient = new ais.AisClient({
-      username: 'jdesys',
-      password: 'steltixE1',
-      url: 'http://sandbox921.steltix.com',
-      deviceName: 'codex' + Math.random()
-    })
-    const tableForQuery = 'F4101'; // items table
-    const query = aisClient.createDataQuery(tableForQuery).select('LITM').pageSize(1);
-    aisClient.newFetch(query).then(function (data) {
-      //console.log("ais obj in ds init === "+JSON.stringify(data));
-      return df.resolve("dataservice connected to E1...");
-    })
-
-    return df.promise()
-
-  }
 
   function getItemsAPI() {
     // use a promise for async data
@@ -34,22 +11,6 @@ define(['knockout', 'jquery', 'ais'], function (ko, $, ais) {
       'DSC1': 'Description'
     };
 
-    const aisClient = new ais.AisClient({
-      username: 'jdesys',
-      password: 'steltixE1',
-      url: 'http://sandbox921.steltix.com',
-      deviceName: 'codex' + Math.random()
-    })
-    const tableForQuery = 'F4101'; // items table
-    const query = aisClient.createDataQuery(tableForQuery).select(['LITM', 'DSC1']).pageSize(54);
-    aisClient.newFetch(query).then(function (data) {
-      //console.log("ais obj in ds init === "+JSON.stringify(data));
-      return df.resolve({
-        rows: data,
-        headers: headers
-      });
-    })
-
     return df.promise()
   }
 
@@ -58,6 +19,7 @@ define(['knockout', 'jquery', 'ais'], function (ko, $, ais) {
     let itemsHolder = ko.observableArray();
     let headers = []
     // temp array of JDE data
+    
     let items = [
 
       {
@@ -18418,7 +18380,7 @@ define(['knockout', 'jquery', 'ais'], function (ko, $, ais) {
         "F4101_UMS8": " "
       }
     ];
-    // all arrays for filter-table must have a unique key as ID 
+    // all arrays for filter-table must have a unique key as ID
     // this is set in the props to filter-table
 
     let cnt = 0; // var for our rowIndex prop
@@ -18430,7 +18392,7 @@ define(['knockout', 'jquery', 'ais'], function (ko, $, ais) {
     // add the mutated rows to our observable
     itemsHolder(items);
     // set our headers object
-    // key is used to fetch the data from rows 
+    // key is used to fetch the data from rows
     // value is displayed as the filter-table headers
     headers = {
       'F4101_LITM': 'Item Number',
@@ -18444,15 +18406,11 @@ define(['knockout', 'jquery', 'ais'], function (ko, $, ais) {
     }
   }
 
-  function getContacts() {
-    // not implemented yet
-    return []
-  }
+
   return {
-    sync: sync,
-    init: init,
+
     getItemsStatic: getItemsStatic,
-    getItemsAPI: getItemsAPI,
-    getContacts: getContacts
+    getItemsAPI: getItemsAPI
+
   }
 });

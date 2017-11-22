@@ -18,6 +18,7 @@ function (ko) {
             for (var i in result) {
                 self.storeData.push(result[i]);
             }
+            console.log(self.storeData);
 //
         }})
 
@@ -27,7 +28,7 @@ function (ko) {
             for (var i in result) {
                 self.locationData.push(result[i]);
             }
-            console.log(locationData);
+            // console.log(locationData);
 //
         }})
             .fail(function(jqXHR){

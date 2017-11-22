@@ -1,5 +1,5 @@
-define(['ojs/ojcore', 'knockout', 'jquery', 'ais', 'ds', 'jet-composites/filter-table/loader', 'jet-composites/overview-card/loader', 'jet-composites/smart-shop/loader'],
-  function (oj, ko, $, ais, ds) {
+define(['ojs/ojcore', 'knockout', 'jquery', 'ais', 'ds', 'stockdb', 'jet-composites/filter-table/loader', 'jet-composites/overview-card/loader', 'jet-composites/smart-shop/loader'],
+  function (oj, ko, $, ais, ds, stockdb) {
 
     function DashboardViewModel() {
       var self = this;
@@ -9,16 +9,16 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ais', 'ds', 'jet-composites/filter-
       // data service delivers for filter-table component --- data prop requirements
 
 
-      self.itemData = ds.getItemsStatic();
-      ds.init().then(function (data) {
-        console.log(data)
+      self.itemData = stockdb.getItemsStatic();
+      // ds.init().then(function (data) {
+        // console.log(data)
         // for JQUERY injection pattern - below in hamdleAttached method
 
 
         // for KO Pattern - fetchdata into observable
 
 
-        ds.getItemsAPI().then(function (data2) {
+        stockdb.getItemsAPI().then(function (data2) {
           console.log(JSON.stringify(data2.rows))
           self.itemsArray(data2.rows);
 
@@ -26,7 +26,7 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ais', 'ds', 'jet-composites/filter-
 
 
 
-      })
+      // })
 
 
       // event handler - provides jquery and jquery ui event objects
@@ -93,3 +93,4 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ais', 'ds', 'jet-composites/filter-
     return new DashboardViewModel();
   }
 );
+//
