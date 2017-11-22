@@ -6,9 +6,9 @@ define(['knockout', 'jquery'], function (ko, $, ais) {
     // use a promise for async data
     const df = $.Deferred();
     var headers = {
-
-      'customer-locations': 'Customer Locations',
-      'number_Customers': 'No. of customers'
+      'store_location': 'Store',
+      'name': 'Customer Locations',
+      'counter': 'No. of customers'
     };
 
     // var table2 = {
@@ -52,36 +52,28 @@ var items;
          url: "https://tyre-api.herokuapp.com/api/shops/",
          type: 'get',
          success: function(result) {
-           // console.log(result);
-            //  var cus_loc = []
-            //  var newArr = {}
-            //  var data =[]
-             items = result
-          //  for (var i in result) {
-          //    cus_loc.push(result[i].customers_locations);
-           //
-          //    }
-          //    for (var i = 0; i < cus_loc.length; i++) {
-           //
-           //
-          //      for (var x = 0; x < cus_loc[i].length; x++) {
-          //        if (newArr[cus_loc[i][x]] === undefined){
-          //          newArr[cus_loc[i][x]] = 1;
-          //        }else {
-          //          newArr[cus_loc[i][x]]++;
-          //        }
-          //      }
-          //    }
-          //    data.push(newArr)
-          //             console.log(result);
+
+           // console.log("get Locations"+result);
+           var allLocations = []
+           for (var i = 0; i < result.length; i++) {
+            //  allLocations.push(result[i].store_location)
+             for (var j = 0; j < result[j].customer_locations.length; j++) {
+              //  array[i]
+               allLocations.push(result[i].customer_locations[j])
+              //  console.log(result[i].store_location, result[i].customer_locations[j]);
+             }
+
+           }
+             items = allLocations
+
           let cnt = 0; // var for our rowIndex prop
           // add the rowIndex
           items.forEach(function (oneItem) {
             oneItem.rowIndex = cnt; // add rowIndex since our rows do not have unique keys
             cnt++
           })
-                      storeLocation(result)
-                      console.log(result.customer_locations);
+                      storeLocation(allLocations)
+                      console.log(allLocations);
             }
        })
        .fail(function(jqXHR) {
@@ -92,8 +84,9 @@ var items;
         // key is used to fetch the data from rows
         // value is displayed as the filter-table headers
         headers = {
-          'customer-locations': 'Customer Locations',
-          'number_Customers': 'No. of customers'
+          // 'store_location': 'Store',
+          'name': 'Customer Locations',
+          'counter': 'No. of customers'
         };
 
         //  table2 = {

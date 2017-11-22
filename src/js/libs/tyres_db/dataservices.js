@@ -44,7 +44,7 @@ define(['knockout', 'jquery'], function (ko, $, ais) {
         // console.log(result);
         // add the mutated rows to our observable
         stockLevel(result);
-        // console.log(result);
+        console.log(result);
 //
     }})
 
