@@ -3,7 +3,7 @@
 
     <div class="oj-flex oj-flex-items-pad">
       <div class="oj-flex-item">
-        <div style="width:500px;height:600px;overflow:scroll" id="appHolder">
+        <div style="width:600px;height:600px;overflow:scroll" id="appHolder">
 
 
           <!-- BASIC HTML INPUT COMPONENT -->
@@ -48,6 +48,7 @@
           </table> -->
 
   <!-- WITH WEB CCA COMPONENT -->
+  <!-- <filter-table tableid="items" filter="" data={{itemData}} onrowclick="{{handleRowClick}}"></filter-table> -->
   <filter-table tableid="items" filter="" data={{itemData}} onrowclick="{{handleRowClick}}"></filter-table>
 
 
@@ -56,6 +57,7 @@
         </div>
 
       </div>
+      <customer-locations tableid="items" filter="" data={{itemData2}} onrowclick="{{handleRowClick}}"></customer-locations>
 
     </div>
   </div>

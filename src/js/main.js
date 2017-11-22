@@ -33,7 +33,9 @@ requirejs.config(
     'css': 'libs/require-css/css',
     'ais':'libs/steltixlabs/ais',
     'ds':'libs/steltixlabs/dataservices',
-    'stockdb':'libs/tyres_db/dataservices'
+    'stockdb':'libs/tyres_db/dataservices',
+    'locdb':'libs/tyres_db/dataserv'
+
 
   }
   //endinjector

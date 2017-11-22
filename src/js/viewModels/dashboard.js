@@ -1,5 +1,5 @@
-define(['ojs/ojcore', 'knockout', 'jquery', 'ais', 'ds', 'stockdb', 'jet-composites/filter-table/loader', 'jet-composites/overview-card/loader', 'jet-composites/smart-shop/loader'],
-  function (oj, ko, $, ais, ds, stockdb) {
+define(['ojs/ojcore', 'knockout', 'jquery', 'ais', 'ds', 'stockdb', 'locdb', 'jet-composites/filter-table/loader', 'jet-composites/overview-card/loader', 'jet-composites/customer-locations/loader'],
+  function (oj, ko, $, ais, ds, stockdb, locdb) {
 
     function DashboardViewModel() {
       var self = this;
@@ -10,6 +10,9 @@ define(['ojs/ojcore', 'knockout', 'jquery', 'ais', 'ds', 'stockdb', 'jet-composi
 
 
       self.itemData = stockdb.getItemsStatic();
+      self.itemData2 = locdb.getItemsStatic();
+
+
       // ds.init().then(function (data) {
         // console.log(data)
         // for JQUERY injection pattern - below in hamdleAttached method
